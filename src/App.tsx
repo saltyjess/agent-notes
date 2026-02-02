@@ -6,8 +6,11 @@ import SettingsTabs from './components/SettingsTabs'
 import NotesSection from './components/NotesSection'
 import CompanyNotesSection from './components/CompanyNotesSection'
 import NoteModal from './components/NoteModal'
-import VersionDropdown from './components/VersionDropdown'
+import VersionBar from './components/VersionBar'
 import VersionModal from './components/VersionModal'
+
+const VERSION_BAR_HEIGHT = 56
+const HEADER_HEIGHT = 56
 
 const STORAGE_KEY = 'agent-notes-data-v2'
 const VERSION_STORAGE_KEY = 'agent-notes-versions'
@@ -283,61 +286,69 @@ function App() {
   const companyNotes = notes.filter(n => n.type === 'company')
 
   return (
-    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
-      <Header />
-      <Sidebar />
+    <div style={{ minHeight: '100vh', backgroundColor: '#121418' }}>
+      {/* Version Bar - Top level overlay */}
+      {currentVersion && (
+        <VersionBar
+          projectName="Itinerary Notes"
+          versions={versions}
+          currentVersion={currentVersion}
+          onSelectVersion={handleSelectVersion}
+          onCreateVersion={handleCreateVersion}
+        />
+      )}
 
-      <div style={{ flex: 1, marginLeft: '200px', marginTop: '56px', display: 'flex', flexDirection: 'column' }}>
-        <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
-          <div style={{
-            display: 'flex',
-            alignItems: 'center',
-            justifyContent: 'space-between',
-            marginBottom: '20px'
-          }}>
-            <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', margin: 0 }}>Settings</h1>
-            {currentVersion && (
-              <VersionDropdown
-                versions={versions}
-                currentVersion={currentVersion}
-                onSelect={handleSelectVersion}
-                onCreateVersion={handleCreateVersion}
-              />
-            )}
+      {/* App Frame - Contains the actual app below the version bar */}
+      <div style={{
+        marginTop: `${VERSION_BAR_HEIGHT}px`,
+        height: `calc(100vh - ${VERSION_BAR_HEIGHT}px)`,
+        overflow: 'hidden',
+        borderRadius: '0',
+        backgroundColor: '#f8f9fa',
+      }}>
+        {/* Inner app layout */}
+        <div style={{ display: 'flex', height: '100%' }}>
+          <Header />
+          <Sidebar />
+
+          <div style={{ flex: 1, marginLeft: '200px', marginTop: `${HEADER_HEIGHT}px`, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+            <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
+              <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', marginBottom: '20px' }}>Settings</h1>
+
+              <SettingsTabs activeTab="itinerary-notes" />
+
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+                <NotesSection
+                  title="Vendor notes"
+                  subtitle="Notes displayed below the vendor information on itineraries"
+                  notes={vendorNotes}
+                  onAdd={() => handleAddNote('vendor')}
+                  onEdit={handleEditNote}
+                  onDelete={handleDeleteNote}
+                  onToggle={handleToggleNote}
+                />
+
+                <NotesSection
+                  title="Trip notes"
+                  subtitle='Notes displayed in the "Before you go" section on itineraries'
+                  notes={tripNotes}
+                  onAdd={() => handleAddNote('trip')}
+                  onEdit={handleEditNote}
+                  onDelete={handleDeleteNote}
+                  onToggle={handleToggleNote}
+                />
+
+                <CompanyNotesSection
+                  notes={companyNotes}
+                  onAdd={() => handleAddNote('company')}
+                  onEdit={handleEditNote}
+                  onDelete={handleDeleteNote}
+                  onToggle={handleToggleNote}
+                />
+              </div>
+            </main>
           </div>
-
-          <SettingsTabs activeTab="itinerary-notes" />
-
-          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
-            <NotesSection
-              title="Vendor notes"
-              subtitle="Notes displayed below the vendor information on itineraries"
-              notes={vendorNotes}
-              onAdd={() => handleAddNote('vendor')}
-              onEdit={handleEditNote}
-              onDelete={handleDeleteNote}
-              onToggle={handleToggleNote}
-            />
-
-            <NotesSection
-              title="Trip notes"
-              subtitle='Notes displayed in the "Before you go" section on itineraries'
-              notes={tripNotes}
-              onAdd={() => handleAddNote('trip')}
-              onEdit={handleEditNote}
-              onDelete={handleDeleteNote}
-              onToggle={handleToggleNote}
-            />
-
-            <CompanyNotesSection
-              notes={companyNotes}
-              onAdd={() => handleAddNote('company')}
-              onEdit={handleEditNote}
-              onDelete={handleDeleteNote}
-              onToggle={handleToggleNote}
-            />
-          </div>
-        </main>
+        </div>
       </div>
 
       {isModalOpen && (

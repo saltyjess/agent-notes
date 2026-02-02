@@ -1,10 +1,12 @@
 import { MagnifyingGlass, ArrowsClockwise, CaretDown } from "@phosphor-icons/react"
 
+const VERSION_BAR_HEIGHT = 56
+
 function Header() {
   return (
     <header style={{
       position: 'fixed',
-      top: 0,
+      top: `${VERSION_BAR_HEIGHT}px`,
       left: 0,
       right: 0,
       height: '56px',

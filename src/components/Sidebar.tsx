@@ -17,6 +17,9 @@ const mainNavItems = [
   { id: 'settings', label: 'Settings', icon: Gear, active: true },
 ]
 
+const VERSION_BAR_HEIGHT = 56
+const HEADER_HEIGHT = 56
+
 function Sidebar() {
   return (
     <aside style={{
@@ -25,7 +28,7 @@ function Sidebar() {
       backgroundColor: 'white',
       borderRight: '1px solid #e5e7eb',
       position: 'fixed',
-      top: '56px',
+      top: `${VERSION_BAR_HEIGHT + HEADER_HEIGHT}px`,
       left: 0,
       bottom: 0,
       display: 'flex',
