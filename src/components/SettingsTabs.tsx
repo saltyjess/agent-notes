@@ -14,15 +14,26 @@ const tabs = [
 
 function SettingsTabs({ activeTab }: SettingsTabsProps) {
   return (
-    <div className="flex gap-1 border-b border-gray-200 pb-3 mb-6">
+    <div style={{
+      display: 'flex',
+      gap: '4px',
+      borderBottom: '1px solid #e5e7eb',
+      paddingBottom: '12px',
+      marginBottom: '24px',
+    }}>
       {tabs.map(tab => (
         <button
           key={tab.id}
-          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
-            tab.id === activeTab
-              ? 'bg-[#f3f4f6] text-[#1f2532] border border-gray-200'
-              : 'text-[#5c6370] hover:text-[#1f2532] hover:bg-[#f8f9fa]'
-          }`}
+          style={{
+            padding: '6px 12px',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 500,
+            cursor: 'pointer',
+            border: tab.id === activeTab ? '1px solid #e5e7eb' : 'none',
+            backgroundColor: tab.id === activeTab ? '#f3f4f6' : 'transparent',
+            color: tab.id === activeTab ? '#1f2532' : '#5c6370',
+          }}
         >
           {tab.label}
         </button>

@@ -206,18 +206,18 @@ function App() {
   const companyNotes = notes.filter(n => n.type === 'company')
 
   return (
-    <div className="flex min-h-screen bg-[#f8f9fa]">
+    <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
       <Sidebar />
 
-      <div className="flex-1 ml-[200px] flex flex-col">
+      <div style={{ flex: 1, marginLeft: '200px', display: 'flex', flexDirection: 'column' }}>
         <Header />
 
-        <main className="flex-1 p-6 bg-[#f8f9fa]">
-          <h1 className="text-xl font-semibold text-[#1f2532] mb-4">Settings</h1>
+        <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
+          <h1 style={{ fontSize: '20px', fontWeight: 600, color: '#1f2532', marginBottom: '16px' }}>Settings</h1>
 
           <SettingsTabs activeTab="itinerary-notes" />
 
-          <div className="space-y-6">
+          <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
             <NotesSection
               title="Vendor notes"
               subtitle="Notes displayed below the vendor information on itineraries"

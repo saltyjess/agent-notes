@@ -1,7 +1,6 @@
 import { Plus, TextAa, TextB, TextItalic, ListBullets, Link } from "@phosphor-icons/react"
 import { Note, FILTER_OPTIONS } from '../types'
 import { Switch } from './ui/switch'
-import { Badge } from './ui/badge'
 
 interface CompanyNotesSectionProps {
   notes: Note[]
@@ -12,7 +11,6 @@ interface CompanyNotesSectionProps {
 }
 
 function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
-  // Split notes into the "rich text" notes and "toggle" notes based on their content
   const toggleNotes = notes.filter(n =>
     ['Direct bill', 'Rate assurance', 'Virtual payments'].includes(n.title)
   )
@@ -24,7 +22,7 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
       if (result.includes(pattern)) {
         result = result.replace(
           pattern,
-          `<a href="#" class="text-[#0076a1] hover:underline">${pattern}</a>`
+          `<a href="#" style="color: #0076a1; text-decoration: none;">${pattern}</a>`
         )
       }
     })
@@ -39,49 +37,86 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
   }
 
   return (
-    <section className="bg-white border border-gray-200 rounded-xl p-6">
+    <section style={{
+      backgroundColor: 'white',
+      border: '1px solid #e5e7eb',
+      borderRadius: '12px',
+      padding: '24px',
+    }}>
       {/* Header */}
-      <div className="flex items-start justify-between mb-5">
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        marginBottom: '20px',
+      }}>
         <div>
-          <h2 className="text-base font-semibold text-[#1f2532]">Company notes</h2>
-          <p className="text-sm text-[#5c6370] mt-0.5">Notes integrated in the itineraries</p>
+          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>Company notes</h2>
+          <p style={{ fontSize: '14px', color: '#5c6370', marginTop: '2px', margin: 0 }}>Notes integrated in the itineraries</p>
         </div>
-        <button className="flex items-center gap-1.5 text-sm font-medium text-[#5c6370] hover:text-[#1f2532] transition-colors">
+        <button style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '6px',
+          fontSize: '14px',
+          fontWeight: 500,
+          color: '#5c6370',
+          backgroundColor: 'transparent',
+          border: 'none',
+          cursor: 'pointer',
+        }}>
           Add new
           <Plus size={16} weight="bold" />
         </button>
       </div>
 
       {/* Rich text areas */}
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(2, 1fr)', gap: '16px', marginBottom: '24px' }}>
         {/* Policy text area */}
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-[#1f2532]">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
               Policy displayed on itinerary (this name needs reworking)
             </label>
-            <span className="text-xs text-[#9ca3af]">Optional</span>
+            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
           </div>
-          <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
-              className="w-full p-3 text-sm text-[#5c6370] resize-none border-none focus:outline-none focus:ring-0 bg-white"
+              style={{
+                width: '100%',
+                padding: '12px',
+                fontSize: '14px',
+                color: '#5c6370',
+                resize: 'none',
+                border: 'none',
+                outline: 'none',
+                backgroundColor: 'white',
+                boxSizing: 'border-box',
+              }}
               rows={4}
               defaultValue="Please review all trip details carefully to ensure dates, names, and arrangements are correct."
             />
-            <div className="flex items-center gap-0.5 px-3 py-2 border-t border-gray-100 bg-[#f8f9fa]">
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              padding: '8px 12px',
+              borderTop: '1px solid #f3f4f6',
+              backgroundColor: '#f8f9fa',
+            }}>
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextAa size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextB size={16} weight="bold" />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextItalic size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <ListBullets size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <Link size={16} />
               </button>
             </div>
@@ -90,32 +125,49 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
 
         {/* Fine print text area */}
         <div>
-          <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-[#1f2532]">
+          <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
+            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
               Fine print displayed on itinerary (this name needs reworking)
             </label>
-            <span className="text-xs text-[#9ca3af]">Optional</span>
+            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
           </div>
-          <div className="border border-gray-200 rounded-lg overflow-hidden">
+          <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
-              className="w-full p-3 text-sm text-[#5c6370] resize-none border-none focus:outline-none focus:ring-0 bg-white"
+              style={{
+                width: '100%',
+                padding: '12px',
+                fontSize: '14px',
+                color: '#5c6370',
+                resize: 'none',
+                border: 'none',
+                outline: 'none',
+                backgroundColor: 'white',
+                boxSizing: 'border-box',
+              }}
               rows={4}
               defaultValue="By flying with our company you agree to represent our company and follow our standards listed in the company policies."
             />
-            <div className="flex items-center gap-0.5 px-3 py-2 border-t border-gray-100 bg-[#f8f9fa]">
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+            <div style={{
+              display: 'flex',
+              alignItems: 'center',
+              gap: '2px',
+              padding: '8px 12px',
+              borderTop: '1px solid #f3f4f6',
+              backgroundColor: '#f8f9fa',
+            }}>
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextAa size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextB size={16} weight="bold" />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <TextItalic size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <ListBullets size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
+              <button style={{ padding: '6px', borderRadius: '4px', backgroundColor: 'transparent', border: 'none', color: '#5c6370', cursor: 'pointer' }}>
                 <Link size={16} />
               </button>
             </div>
@@ -124,33 +176,44 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
       </div>
 
       {/* Toggle items */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+      <div style={{ display: 'grid', gridTemplateColumns: 'repeat(3, 1fr)', gap: '16px' }}>
         {toggleNotes.map(note => {
           const filterLabels = getFilterLabels(note.filters)
           return (
-            <div key={note.id} className="border border-gray-200 rounded-lg p-4">
-              <div className="flex items-start gap-3 mb-2">
+            <div key={note.id} style={{ border: '1px solid #e5e7eb', borderRadius: '8px', padding: '16px' }}>
+              <div style={{ display: 'flex', alignItems: 'flex-start', gap: '12px', marginBottom: '8px' }}>
                 <Switch
                   checked={note.enabled}
                   onCheckedChange={() => onToggle(note.id)}
-                  className="mt-0.5"
                 />
-                <h3 className="text-sm font-semibold text-[#1f2532]">{note.title}</h3>
+                <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{note.title}</h3>
               </div>
               <p
-                className={`text-[13px] leading-relaxed mb-3 ${note.enabled ? 'text-[#5c6370]' : 'text-[#9ca3af]'}`}
+                style={{
+                  fontSize: '13px',
+                  lineHeight: 1.5,
+                  marginBottom: '12px',
+                  color: note.enabled ? '#5c6370' : '#9ca3af',
+                  margin: '0 0 12px 0',
+                }}
                 dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
               />
-              <div className="flex flex-wrap gap-1.5">
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {filterLabels.map(filter => (
-                  <Badge
+                  <span
                     key={filter.id}
-                    variant="secondary"
-                    className={`text-[11px] font-medium px-2 py-0.5 rounded ${!note.enabled ? 'opacity-50' : ''}`}
-                    style={{ backgroundColor: filter.color, color: '#374151' }}
+                    style={{
+                      fontSize: '11px',
+                      fontWeight: 500,
+                      padding: '2px 8px',
+                      borderRadius: '4px',
+                      backgroundColor: filter.color,
+                      color: '#374151',
+                      opacity: note.enabled ? 1 : 0.5,
+                    }}
                   >
                     {filter.label}
-                  </Badge>
+                  </span>
                 ))}
               </div>
             </div>

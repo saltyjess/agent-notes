@@ -14,16 +14,36 @@ interface NotesSectionProps {
 
 function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggle }: NotesSectionProps) {
   return (
-    <section className="bg-white border border-gray-200 rounded-xl p-6">
+    <section style={{
+      backgroundColor: 'white',
+      border: '1px solid #e5e7eb',
+      borderRadius: '12px',
+      padding: '24px',
+    }}>
       {/* Header */}
-      <div className="flex items-start justify-between mb-5">
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        marginBottom: '20px',
+      }}>
         <div>
-          <h2 className="text-base font-semibold text-[#1f2532]">{title}</h2>
-          <p className="text-sm text-[#5c6370] mt-0.5">{subtitle}</p>
+          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{title}</h2>
+          <p style={{ fontSize: '14px', color: '#5c6370', marginTop: '2px', margin: 0 }}>{subtitle}</p>
         </div>
         <button
           onClick={onAdd}
-          className="flex items-center gap-1.5 text-sm font-medium text-[#5c6370] hover:text-[#1f2532] transition-colors"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '6px',
+            fontSize: '14px',
+            fontWeight: 500,
+            color: '#5c6370',
+            backgroundColor: 'transparent',
+            border: 'none',
+            cursor: 'pointer',
+          }}
         >
           Add new
           <Plus size={16} weight="bold" />
@@ -31,7 +51,11 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
       </div>
 
       {/* Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: 'repeat(3, 1fr)',
+        gap: '16px',
+      }}>
         {notes.map(note => (
           <NoteCard
             key={note.id}
@@ -42,7 +66,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
           />
         ))}
         {notes.length === 0 && (
-          <div className="col-span-full text-center py-8 text-[#9ca3af]">
+          <div style={{ gridColumn: '1 / -1', textAlign: 'center', padding: '32px', color: '#9ca3af' }}>
             <p>No notes yet. Click "Add new +" to create one.</p>
           </div>
         )}

@@ -19,30 +19,56 @@ const mainNavItems = [
 
 function Sidebar() {
   return (
-    <aside className="w-[200px] bg-white border-r border-gray-200 fixed top-0 left-0 bottom-0 flex flex-col">
+    <aside style={{
+      width: '200px',
+      minWidth: '200px',
+      backgroundColor: 'white',
+      borderRight: '1px solid #e5e7eb',
+      position: 'fixed',
+      top: 0,
+      left: 0,
+      bottom: 0,
+      display: 'flex',
+      flexDirection: 'column',
+      zIndex: 50,
+    }}>
       {/* Logo */}
-      <div className="flex items-center gap-2 px-4 h-14 border-b border-gray-100">
+      <div style={{
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        padding: '0 16px',
+        height: '56px',
+        borderBottom: '1px solid #f3f4f6',
+      }}>
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="12" fill="#0ea5e9"/>
           <path d="M7 12C7 9.5 9 7.5 12 7.5C15 7.5 17 9.5 17 12" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
           <circle cx="12" cy="16" r="2" fill="white"/>
         </svg>
-        <span className="text-base font-semibold text-[#1f2532]">andavo</span>
+        <span style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532' }}>andavo</span>
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 flex flex-col gap-0.5 px-3 py-3">
+      <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2px', padding: '12px' }}>
         {mainNavItems.map(item => {
           const Icon = item.icon
           return (
             <a
               key={item.id}
               href="#"
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
-                item.active
-                  ? 'bg-[#e0f4fc] text-[#0076a1]'
-                  : 'text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532]'
-              }`}
+              style={{
+                display: 'flex',
+                alignItems: 'center',
+                gap: '12px',
+                padding: '8px 12px',
+                borderRadius: '8px',
+                fontSize: '14px',
+                fontWeight: 500,
+                textDecoration: 'none',
+                backgroundColor: item.active ? '#e0f4fc' : 'transparent',
+                color: item.active ? '#0076a1' : '#5c6370',
+              }}
             >
               <Icon size={20} weight={item.active ? "fill" : "regular"} />
               <span>{item.label}</span>
@@ -53,20 +79,49 @@ function Sidebar() {
         {/* Deem section */}
         <a
           href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532] mt-1"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 500,
+            textDecoration: 'none',
+            color: '#5c6370',
+            marginTop: '4px',
+          }}
         >
-          <div className="w-5 h-5 rounded bg-[#00a86b] flex items-center justify-center">
-            <span className="text-white text-[10px] font-bold">D</span>
+          <div style={{
+            width: '20px',
+            height: '20px',
+            borderRadius: '4px',
+            backgroundColor: '#00a86b',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+          }}>
+            <span style={{ color: 'white', fontSize: '10px', fontWeight: 700 }}>D</span>
           </div>
           <span>Deem</span>
         </a>
       </nav>
 
       {/* Support */}
-      <div className="px-3 py-3 border-t border-gray-100">
+      <div style={{ padding: '12px', borderTop: '1px solid #f3f4f6' }}>
         <a
           href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532]"
+          style={{
+            display: 'flex',
+            alignItems: 'center',
+            gap: '12px',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            fontSize: '14px',
+            fontWeight: 500,
+            textDecoration: 'none',
+            color: '#5c6370',
+          }}
         >
           <Lifebuoy size={20} weight="regular" />
           <span>Support</span>

@@ -1,6 +1,5 @@
 import { DotsThreeVertical, Notebook } from "@phosphor-icons/react"
 import { Note, FILTER_OPTIONS } from '../types'
-import { Badge } from './ui/badge'
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -57,7 +56,7 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       if (result.includes(pattern)) {
         result = result.replace(
           pattern,
-          `<a href="#" class="text-[#0076a1] hover:underline">${pattern}</a>`
+          `<a href="#" style="color: #0076a1; text-decoration: none;">${pattern}</a>`
         )
       }
     })
@@ -68,15 +67,34 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
   const isVendorNote = note.type === 'vendor'
 
   return (
-    <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
+    <div style={{
+      backgroundColor: 'white',
+      border: '1px solid #e5e7eb',
+      borderRadius: '8px',
+      padding: '16px',
+    }}>
       {/* Header */}
-      <div className="flex items-start justify-between gap-2 mb-2">
-        <div className="flex items-start gap-2.5 flex-1 min-w-0">
+      <div style={{
+        display: 'flex',
+        alignItems: 'flex-start',
+        justifyContent: 'space-between',
+        gap: '8px',
+        marginBottom: '8px',
+      }}>
+        <div style={{ display: 'flex', alignItems: 'flex-start', gap: '10px', flex: 1, minWidth: 0 }}>
           {/* Icon */}
           {isVendorNote && note.vendor ? (
             <div
-              className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 text-[10px] font-bold"
               style={{
+                width: '24px',
+                height: '24px',
+                borderRadius: '4px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                flexShrink: 0,
+                fontSize: '10px',
+                fontWeight: 700,
                 backgroundColor: vendorColor?.bg || '#6b7280',
                 color: vendorColor?.text || '#fff',
               }}
@@ -84,25 +102,48 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
               {vendorColor?.icon || note.vendor.charAt(0)}
             </div>
           ) : (
-            <div className="w-6 h-6 rounded bg-[#e0f4fc] flex items-center justify-center flex-shrink-0">
-              <Notebook size={14} className="text-[#0076a1]" weight="fill" />
+            <div style={{
+              width: '24px',
+              height: '24px',
+              borderRadius: '4px',
+              backgroundColor: '#e0f4fc',
+              display: 'flex',
+              alignItems: 'center',
+              justifyContent: 'center',
+              flexShrink: 0,
+            }}>
+              <Notebook size={14} style={{ color: '#0076a1' }} weight="fill" />
             </div>
           )}
 
           {/* Title */}
-          <h3 className="text-sm font-semibold text-[#1f2532] leading-tight pt-0.5">{note.title}</h3>
+          <h3 style={{
+            fontSize: '14px',
+            fontWeight: 600,
+            color: '#1f2532',
+            lineHeight: 1.3,
+            paddingTop: '2px',
+            margin: 0,
+          }}>{note.title}</h3>
         </div>
 
         {/* Menu */}
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
-            <button className="p-0.5 rounded hover:bg-gray-100 text-[#9ca3af] hover:text-[#5c6370] transition-colors -mr-1">
+            <button style={{
+              padding: '2px',
+              borderRadius: '4px',
+              backgroundColor: 'transparent',
+              border: 'none',
+              color: '#9ca3af',
+              cursor: 'pointer',
+            }}>
               <DotsThreeVertical size={18} weight="bold" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
             <DropdownMenuItem onClick={onEdit}>Edit</DropdownMenuItem>
-            <DropdownMenuItem onClick={onDelete} className="text-red-600 focus:text-red-600">
+            <DropdownMenuItem onClick={onDelete} style={{ color: '#dc2626' }}>
               Delete
             </DropdownMenuItem>
           </DropdownMenuContent>
@@ -111,31 +152,46 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
 
       {/* Description */}
       <p
-        className="text-[13px] text-[#5c6370] mb-3 leading-relaxed line-clamp-3"
+        style={{
+          fontSize: '13px',
+          color: '#5c6370',
+          marginBottom: '12px',
+          lineHeight: 1.5,
+          margin: '0 0 12px 0',
+        }}
         dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
       />
 
       {/* Tags */}
-      <div className="flex flex-wrap gap-1.5">
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
         {isVendorNote && note.vendor ? (
           // Vendor notes show vendor name as single tag
-          <Badge
-            variant="secondary"
-            className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#f3f4f6]"
-          >
+          <span style={{
+            fontSize: '11px',
+            fontWeight: 500,
+            padding: '2px 8px',
+            borderRadius: '4px',
+            backgroundColor: '#f3f4f6',
+            color: '#374151',
+          }}>
             {note.vendor}
-          </Badge>
+          </span>
         ) : (
           // Trip notes show filter tags
           filterLabels.map(filter => (
-            <Badge
+            <span
               key={filter.id}
-              variant="secondary"
-              className="text-[11px] font-medium px-2 py-0.5 rounded"
-              style={{ backgroundColor: filter.color, color: '#374151' }}
+              style={{
+                fontSize: '11px',
+                fontWeight: 500,
+                padding: '2px 8px',
+                borderRadius: '4px',
+                backgroundColor: filter.color,
+                color: '#374151',
+              }}
             >
               {filter.label}
-            </Badge>
+            </span>
           ))
         )}
       </div>
