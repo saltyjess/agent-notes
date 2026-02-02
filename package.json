@@ -3,10 +3,13 @@
   "private": true,
   "version": "0.0.1",
   "type": "module",
+  "homepage": "https://saltyjess.github.io/agent-notes",
   "scripts": {
     "dev": "vite",
     "build": "tsc && vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "predeploy": "npm run build",
+    "deploy": "gh-pages -d dist"
   },
   "dependencies": {
     "@phosphor-icons/react": "^2.1.10",
@@ -27,6 +30,7 @@
     "@types/react-dom": "^18.2.0",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.24",
+    "gh-pages": "^6.3.0",
     "postcss": "^8.5.6",
     "tailwindcss": "^4.1.18",
     "typescript": "^5.3.0",
