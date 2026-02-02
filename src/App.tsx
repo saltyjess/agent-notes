@@ -207,11 +207,10 @@ function App() {
 
   return (
     <div style={{ display: 'flex', minHeight: '100vh', backgroundColor: '#f8f9fa' }}>
+      <Header />
       <Sidebar />
 
-      <div style={{ flex: 1, marginLeft: '200px', display: 'flex', flexDirection: 'column' }}>
-        <Header />
-
+      <div style={{ flex: 1, marginLeft: '200px', marginTop: '56px', display: 'flex', flexDirection: 'column' }}>
         <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
           <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', marginBottom: '20px' }}>Settings</h1>
 
