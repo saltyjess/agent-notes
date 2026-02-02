@@ -1,13 +1,16 @@
 import { useState, useEffect } from 'react'
-import { Note, NoteType } from './types'
+import { Note, NoteType, Version } from './types'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import SettingsTabs from './components/SettingsTabs'
 import NotesSection from './components/NotesSection'
 import CompanyNotesSection from './components/CompanyNotesSection'
 import NoteModal from './components/NoteModal'
+import VersionDropdown from './components/VersionDropdown'
+import VersionModal from './components/VersionModal'
 
 const STORAGE_KEY = 'agent-notes-data-v2'
+const VERSION_STORAGE_KEY = 'agent-notes-versions'
 
 const defaultNotes: Note[] = [
   {
@@ -136,26 +139,73 @@ const defaultNotes: Note[] = [
   },
 ]
 
+// Default initial version
+const defaultVersion: Version = {
+  id: 'v1.0',
+  version: 'v1.0',
+  subtitle: 'Initial setup',
+  description: 'Initial version with default vendor, trip, and company notes.',
+  date: new Date().toISOString(),
+  changes: [
+    { id: '1', text: 'Added default vendor notes (Hertz, Air China, Delta, Alaska Airlines)', status: 'complete' },
+    { id: '2', text: 'Added default trip notes for travelers', status: 'complete' },
+    { id: '3', text: 'Added company notes with toggle controls', status: 'complete' },
+  ],
+  snapshot: defaultNotes
+}
+
 function App() {
   const [notes, setNotes] = useState<Note[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [modalNoteType, setModalNoteType] = useState<NoteType>('vendor')
 
+  // Versioning state
+  const [versions, setVersions] = useState<Version[]>([])
+  const [currentVersion, setCurrentVersion] = useState<Version | null>(null)
+  const [isVersionModalOpen, setIsVersionModalOpen] = useState(false)
+  const [versionModalMode, setVersionModalMode] = useState<'create' | 'view'>('create')
+  const [viewingVersion, setViewingVersion] = useState<Version | null>(null)
+
+  // Load notes and versions from localStorage
   useEffect(() => {
-    const saved = localStorage.getItem(STORAGE_KEY)
-    if (saved) {
-      setNotes(JSON.parse(saved))
+    const savedNotes = localStorage.getItem(STORAGE_KEY)
+    const savedVersions = localStorage.getItem(VERSION_STORAGE_KEY)
+
+    if (savedVersions) {
+      const parsedVersions = JSON.parse(savedVersions) as Version[]
+      setVersions(parsedVersions)
+      // Set current version to the latest (first in array)
+      if (parsedVersions.length > 0) {
+        setCurrentVersion(parsedVersions[0])
+      }
+    } else {
+      // Initialize with default version
+      setVersions([defaultVersion])
+      setCurrentVersion(defaultVersion)
+      localStorage.setItem(VERSION_STORAGE_KEY, JSON.stringify([defaultVersion]))
+    }
+
+    if (savedNotes) {
+      setNotes(JSON.parse(savedNotes))
     } else {
       setNotes(defaultNotes)
     }
   }, [])
 
+  // Save notes to localStorage
   useEffect(() => {
     if (notes.length > 0) {
       localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
     }
   }, [notes])
+
+  // Save versions to localStorage
+  useEffect(() => {
+    if (versions.length > 0) {
+      localStorage.setItem(VERSION_STORAGE_KEY, JSON.stringify(versions))
+    }
+  }, [versions])
 
   const handleAddNote = (type: NoteType) => {
     setEditingNote(null)
@@ -201,6 +251,33 @@ function App() {
     ))
   }
 
+  // Version handlers
+  const handleCreateVersion = () => {
+    setVersionModalMode('create')
+    setViewingVersion(null)
+    setIsVersionModalOpen(true)
+  }
+
+  const handleSelectVersion = (version: Version) => {
+    // When selecting a version, show its details and offer to restore
+    setVersionModalMode('view')
+    setViewingVersion(version)
+    setIsVersionModalOpen(true)
+  }
+
+  const handleSaveVersion = (versionData: Omit<Version, 'id'>) => {
+    const newVersion: Version = {
+      ...versionData,
+      id: versionData.version,
+      snapshot: [...notes] // Save current notes as snapshot
+    }
+    // Add new version at the beginning (most recent first)
+    const updatedVersions = [newVersion, ...versions]
+    setVersions(updatedVersions)
+    setCurrentVersion(newVersion)
+    setIsVersionModalOpen(false)
+  }
+
   const vendorNotes = notes.filter(n => n.type === 'vendor')
   const tripNotes = notes.filter(n => n.type === 'trip')
   const companyNotes = notes.filter(n => n.type === 'company')
@@ -212,7 +289,22 @@ function App() {
 
       <div style={{ flex: 1, marginLeft: '200px', marginTop: '56px', display: 'flex', flexDirection: 'column' }}>
         <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
-          <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', marginBottom: '20px' }}>Settings</h1>
+          <div style={{
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'space-between',
+            marginBottom: '20px'
+          }}>
+            <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', margin: 0 }}>Settings</h1>
+            {currentVersion && (
+              <VersionDropdown
+                versions={versions}
+                currentVersion={currentVersion}
+                onSelect={handleSelectVersion}
+                onCreateVersion={handleCreateVersion}
+              />
+            )}
+          </div>
 
           <SettingsTabs activeTab="itinerary-notes" />
 
@@ -256,6 +348,20 @@ function App() {
           onClose={() => {
             setIsModalOpen(false)
             setEditingNote(null)
+          }}
+        />
+      )}
+
+      {isVersionModalOpen && currentVersion && (
+        <VersionModal
+          mode={versionModalMode}
+          version={viewingVersion || undefined}
+          currentNotes={notes}
+          previousVersion={versions[0]}
+          onSave={handleSaveVersion}
+          onClose={() => {
+            setIsVersionModalOpen(false)
+            setViewingVersion(null)
           }}
         />
       )}

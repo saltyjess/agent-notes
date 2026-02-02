@@ -65,3 +65,25 @@ export const VENDOR_OPTIONS = [
   'Avis',
   'Budget',
 ]
+
+// Versioning types
+export interface VersionChange {
+  id: string
+  text: string
+  status: 'pending' | 'complete'
+}
+
+export interface Version {
+  id: string
+  version: string
+  subtitle: string
+  description: string
+  date: string
+  changes: VersionChange[]
+  snapshot: Note[] // Snapshot of notes at this version
+}
+
+export interface VersionState {
+  currentVersion: string
+  versions: Version[]
+}
