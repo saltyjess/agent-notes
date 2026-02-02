@@ -118,13 +118,12 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
 
           {/* Title */}
           <h3 style={{
-            fontSize: '13px',
+            fontSize: '14px',
             fontWeight: 600,
             color: '#1f2532',
             lineHeight: 1.4,
             paddingTop: '3px',
             margin: 0,
-            letterSpacing: '-0.01em',
           }}>{note.title}</h3>
         </div>
 
@@ -154,8 +153,8 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       {/* Description */}
       <p
         style={{
-          fontSize: '12px',
-          color: '#5c6370',
+          fontSize: '14px',
+          color: '#6b7280',
           marginBottom: '12px',
           lineHeight: 1.5,
           margin: '0 0 12px 0',
@@ -164,14 +163,14 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       />
 
       {/* Tags */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
         {isVendorNote && note.vendor ? (
           // Vendor notes show vendor name as single tag
           <span style={{
-            fontSize: '10px',
+            fontSize: '12px',
             fontWeight: 500,
-            padding: '2px 6px',
-            borderRadius: '4px',
+            padding: '4px 8px',
+            borderRadius: '6px',
             backgroundColor: '#f3f4f6',
             color: '#374151',
           }}>
@@ -183,10 +182,10 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
             <span
               key={filter.id}
               style={{
-                fontSize: '10px',
+                fontSize: '12px',
                 fontWeight: 500,
-                padding: '2px 6px',
-                borderRadius: '4px',
+                padding: '4px 8px',
+                borderRadius: '6px',
                 backgroundColor: filter.color,
                 color: '#374151',
               }}

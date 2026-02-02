@@ -51,22 +51,22 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         marginBottom: '20px',
       }}>
         <div>
-          <h2 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0, letterSpacing: '-0.01em' }}>Company notes</h2>
-          <p style={{ fontSize: '13px', color: '#5c6370', marginTop: '4px', margin: 0 }}>Notes integrated in the itineraries</p>
+          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>Company notes</h2>
+          <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '4px', margin: 0 }}>Notes integrated in the itineraries</p>
         </div>
         <button style={{
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          fontSize: '13px',
+          fontSize: '14px',
           fontWeight: 500,
-          color: '#5c6370',
+          color: '#6b7280',
           backgroundColor: 'transparent',
           border: 'none',
           cursor: 'pointer',
         }}>
           Add new
-          <Plus size={14} weight="bold" />
+          <Plus size={16} weight="bold" />
         </button>
       </div>
 
@@ -75,18 +75,18 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Policy text area */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <label style={{ fontSize: '13px', fontWeight: 500, color: '#1f2532' }}>
+            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
               Policy displayed on itinerary (this name needs reworking)
             </label>
-            <span style={{ fontSize: '11px', color: '#9ca3af' }}>Optional</span>
+            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
           </div>
           <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
               style={{
                 width: '100%',
                 padding: '12px',
-                fontSize: '13px',
-                color: '#5c6370',
+                fontSize: '14px',
+                color: '#6b7280',
                 resize: 'none',
                 border: 'none',
                 outline: 'none',
@@ -127,18 +127,18 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Fine print text area */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <label style={{ fontSize: '13px', fontWeight: 500, color: '#1f2532' }}>
+            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
               Fine print displayed on itinerary (this name needs reworking)
             </label>
-            <span style={{ fontSize: '11px', color: '#9ca3af' }}>Optional</span>
+            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
           </div>
           <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
               style={{
                 width: '100%',
                 padding: '12px',
-                fontSize: '13px',
-                color: '#5c6370',
+                fontSize: '14px',
+                color: '#6b7280',
                 resize: 'none',
                 border: 'none',
                 outline: 'none',
@@ -188,27 +188,27 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
                   checked={note.enabled}
                   onCheckedChange={() => onToggle(note.id)}
                 />
-                <h3 style={{ fontSize: '13px', fontWeight: 600, color: '#1f2532', margin: 0, letterSpacing: '-0.01em' }}>{note.title}</h3>
+                <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{note.title}</h3>
               </div>
               <p
                 style={{
-                  fontSize: '12px',
+                  fontSize: '14px',
                   lineHeight: 1.5,
                   marginBottom: '12px',
-                  color: note.enabled ? '#5c6370' : '#9ca3af',
+                  color: note.enabled ? '#6b7280' : '#9ca3af',
                   margin: '0 0 12px 0',
                 }}
                 dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
               />
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
                 {filterLabels.map(filter => (
                   <span
                     key={filter.id}
                     style={{
-                      fontSize: '10px',
+                      fontSize: '12px',
                       fontWeight: 500,
-                      padding: '2px 6px',
-                      borderRadius: '4px',
+                      padding: '4px 8px',
+                      borderRadius: '6px',
                       backgroundColor: filter.color,
                       color: '#374151',
                       opacity: note.enabled ? 1 : 0.5,

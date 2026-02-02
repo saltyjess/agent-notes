@@ -25,14 +25,14 @@ function SettingsTabs({ activeTab }: SettingsTabsProps) {
         <button
           key={tab.id}
           style={{
-            padding: '6px 10px',
-            borderRadius: '6px',
-            fontSize: '13px',
+            padding: '8px 12px',
+            borderRadius: '8px',
+            fontSize: '14px',
             fontWeight: 500,
             cursor: 'pointer',
             border: tab.id === activeTab ? '1px solid #e5e7eb' : 'none',
             backgroundColor: tab.id === activeTab ? '#f3f4f6' : 'transparent',
-            color: tab.id === activeTab ? '#1f2532' : '#5c6370',
+            color: tab.id === activeTab ? '#1f2532' : '#6b7280',
           }}
         >
           {tab.label}
