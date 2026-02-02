@@ -16,14 +16,14 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
   return (
     <section className="bg-white border border-gray-200 rounded-xl p-6">
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-base font-semibold text-gray-900">{title}</h2>
-          <p className="text-sm text-gray-500 mt-0.5">{subtitle}</p>
+          <h2 className="text-base font-semibold text-[#1f2532]">{title}</h2>
+          <p className="text-sm text-[#5c6370] mt-0.5">{subtitle}</p>
         </div>
         <button
           onClick={onAdd}
-          className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors"
+          className="flex items-center gap-1.5 text-sm font-medium text-[#5c6370] hover:text-[#1f2532] transition-colors"
         >
           Add new
           <Plus size={16} weight="bold" />
@@ -42,7 +42,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
           />
         ))}
         {notes.length === 0 && (
-          <div className="col-span-full text-center py-8 text-gray-400">
+          <div className="col-span-full text-center py-8 text-[#9ca3af]">
             <p>No notes yet. Click "Add new +" to create one.</p>
           </div>
         )}

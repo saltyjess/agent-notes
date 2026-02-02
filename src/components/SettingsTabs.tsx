@@ -18,10 +18,10 @@ function SettingsTabs({ activeTab }: SettingsTabsProps) {
       {tabs.map(tab => (
         <button
           key={tab.id}
-          className={`px-3 py-1.5 rounded-md text-sm font-medium transition-colors ${
+          className={`px-3 py-1.5 rounded-lg text-sm font-medium transition-colors ${
             tab.id === activeTab
-              ? 'bg-gray-100 text-gray-900'
-              : 'text-gray-500 hover:text-gray-700 hover:bg-gray-50'
+              ? 'bg-[#f3f4f6] text-[#1f2532] border border-gray-200'
+              : 'text-[#5c6370] hover:text-[#1f2532] hover:bg-[#f8f9fa]'
           }`}
         >
           {tab.label}

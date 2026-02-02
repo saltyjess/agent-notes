@@ -206,14 +206,14 @@ function App() {
   const companyNotes = notes.filter(n => n.type === 'company')
 
   return (
-    <div className="flex min-h-screen bg-gray-50">
+    <div className="flex min-h-screen bg-[#f8f9fa]">
       <Sidebar />
 
       <div className="flex-1 ml-[200px] flex flex-col">
         <Header />
 
-        <main className="flex-1 p-6">
-          <h1 className="text-xl font-semibold text-gray-900 mb-4">Settings</h1>
+        <main className="flex-1 p-6 bg-[#f8f9fa]">
+          <h1 className="text-xl font-semibold text-[#1f2532] mb-4">Settings</h1>
 
           <SettingsTabs activeTab="itinerary-notes" />
 

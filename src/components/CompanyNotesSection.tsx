@@ -18,13 +18,13 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
   )
 
   const formatDescription = (text: string) => {
-    const linkPatterns = ['useful guide', 'company policies']
+    const linkPatterns = ['useful guide', 'company policies', 'Read our useful guide']
     let result = text
     linkPatterns.forEach(pattern => {
       if (result.includes(pattern)) {
         result = result.replace(
           pattern,
-          `<a href="#" class="text-sky-600 hover:underline">${pattern}</a>`
+          `<a href="#" class="text-[#0076a1] hover:underline">${pattern}</a>`
         )
       }
     })
@@ -34,19 +34,19 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
   const getFilterLabels = (filterIds: string[]) => {
     return filterIds.map(filterId => {
       const filter = FILTER_OPTIONS.find(f => f.id === filterId)
-      return filter || { id: filterId, label: filterId, color: '#e5e7eb' }
+      return filter || { id: filterId, label: filterId, color: '#f3f4f6' }
     })
   }
 
   return (
     <section className="bg-white border border-gray-200 rounded-xl p-6">
       {/* Header */}
-      <div className="flex items-start justify-between mb-4">
+      <div className="flex items-start justify-between mb-5">
         <div>
-          <h2 className="text-base font-semibold text-gray-900">Company notes</h2>
-          <p className="text-sm text-gray-500 mt-0.5">Notes integrated in the itineraries</p>
+          <h2 className="text-base font-semibold text-[#1f2532]">Company notes</h2>
+          <p className="text-sm text-[#5c6370] mt-0.5">Notes integrated in the itineraries</p>
         </div>
-        <button className="flex items-center gap-1.5 text-sm font-medium text-gray-600 hover:text-gray-900 transition-colors">
+        <button className="flex items-center gap-1.5 text-sm font-medium text-[#5c6370] hover:text-[#1f2532] transition-colors">
           Add new
           <Plus size={16} weight="bold" />
         </button>
@@ -57,31 +57,31 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Policy text area */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-[#1f2532]">
               Policy displayed on itinerary (this name needs reworking)
             </label>
-            <span className="text-xs text-gray-400">Optional</span>
+            <span className="text-xs text-[#9ca3af]">Optional</span>
           </div>
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <textarea
-              className="w-full p-3 text-sm text-gray-700 resize-none border-none focus:outline-none focus:ring-0"
+              className="w-full p-3 text-sm text-[#5c6370] resize-none border-none focus:outline-none focus:ring-0 bg-white"
               rows={4}
               defaultValue="Please review all trip details carefully to ensure dates, names, and arrangements are correct."
             />
-            <div className="flex items-center gap-1 px-3 py-2 border-t border-gray-100 bg-gray-50">
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+            <div className="flex items-center gap-0.5 px-3 py-2 border-t border-gray-100 bg-[#f8f9fa]">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextAa size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextB size={16} weight="bold" />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextItalic size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <ListBullets size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <Link size={16} />
               </button>
             </div>
@@ -91,31 +91,31 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Fine print text area */}
         <div>
           <div className="flex items-center justify-between mb-2">
-            <label className="text-sm font-medium text-gray-700">
+            <label className="text-sm font-medium text-[#1f2532]">
               Fine print displayed on itinerary (this name needs reworking)
             </label>
-            <span className="text-xs text-gray-400">Optional</span>
+            <span className="text-xs text-[#9ca3af]">Optional</span>
           </div>
           <div className="border border-gray-200 rounded-lg overflow-hidden">
             <textarea
-              className="w-full p-3 text-sm text-gray-700 resize-none border-none focus:outline-none focus:ring-0"
+              className="w-full p-3 text-sm text-[#5c6370] resize-none border-none focus:outline-none focus:ring-0 bg-white"
               rows={4}
               defaultValue="By flying with our company you agree to represent our company and follow our standards listed in the company policies."
             />
-            <div className="flex items-center gap-1 px-3 py-2 border-t border-gray-100 bg-gray-50">
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+            <div className="flex items-center gap-0.5 px-3 py-2 border-t border-gray-100 bg-[#f8f9fa]">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextAa size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextB size={16} weight="bold" />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <TextItalic size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <ListBullets size={16} />
               </button>
-              <button className="p-1.5 rounded hover:bg-gray-200 text-gray-500 transition-colors">
+              <button className="p-1.5 rounded hover:bg-gray-200 text-[#5c6370] transition-colors">
                 <Link size={16} />
               </button>
             </div>
@@ -133,11 +133,12 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
                 <Switch
                   checked={note.enabled}
                   onCheckedChange={() => onToggle(note.id)}
+                  className="mt-0.5"
                 />
-                <h3 className="text-sm font-semibold text-gray-900">{note.title}</h3>
+                <h3 className="text-sm font-semibold text-[#1f2532]">{note.title}</h3>
               </div>
               <p
-                className={`text-sm mb-3 ${note.enabled ? 'text-gray-600' : 'text-gray-400'}`}
+                className={`text-[13px] leading-relaxed mb-3 ${note.enabled ? 'text-[#5c6370]' : 'text-[#9ca3af]'}`}
                 dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
               />
               <div className="flex flex-wrap gap-1.5">
@@ -145,8 +146,8 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
                   <Badge
                     key={filter.id}
                     variant="secondary"
-                    className={`text-xs font-medium ${!note.enabled ? 'opacity-50' : ''}`}
-                    style={{ backgroundColor: filter.color }}
+                    className={`text-[11px] font-medium px-2 py-0.5 rounded ${!note.enabled ? 'opacity-50' : ''}`}
+                    style={{ backgroundColor: filter.color, color: '#374151' }}
                   >
                     {filter.label}
                   </Badge>

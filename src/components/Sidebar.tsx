@@ -21,28 +21,27 @@ function Sidebar() {
   return (
     <aside className="w-[200px] bg-white border-r border-gray-200 fixed top-0 left-0 bottom-0 flex flex-col">
       {/* Logo */}
-      <div className="flex items-center gap-2 px-4 py-4">
+      <div className="flex items-center gap-2 px-4 h-14 border-b border-gray-100">
         <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
           <circle cx="12" cy="12" r="12" fill="#0ea5e9"/>
-          <circle cx="8" cy="10" r="2.5" fill="white"/>
-          <circle cx="16" cy="10" r="2.5" fill="white"/>
-          <circle cx="12" cy="16" r="2.5" fill="white"/>
+          <path d="M7 12C7 9.5 9 7.5 12 7.5C15 7.5 17 9.5 17 12" stroke="white" strokeWidth="2.5" strokeLinecap="round"/>
+          <circle cx="12" cy="16" r="2" fill="white"/>
         </svg>
-        <span className="text-base font-semibold text-gray-900">andavo</span>
+        <span className="text-base font-semibold text-[#1f2532]">andavo</span>
       </div>
 
       {/* Main Navigation */}
-      <nav className="flex-1 flex flex-col gap-0.5 px-2 py-2">
+      <nav className="flex-1 flex flex-col gap-0.5 px-3 py-3">
         {mainNavItems.map(item => {
           const Icon = item.icon
           return (
             <a
               key={item.id}
               href="#"
-              className={`flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium transition-colors ${
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium transition-colors ${
                 item.active
-                  ? 'bg-sky-100 text-sky-700'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
+                  ? 'bg-[#e0f4fc] text-[#0076a1]'
+                  : 'text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532]'
               }`}
             >
               <Icon size={20} weight={item.active ? "fill" : "regular"} />
@@ -54,20 +53,20 @@ function Sidebar() {
         {/* Deem section */}
         <a
           href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900 mt-1"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532] mt-1"
         >
-          <div className="w-5 h-5 rounded bg-emerald-500 flex items-center justify-center">
-            <span className="text-white text-xs font-bold">D</span>
+          <div className="w-5 h-5 rounded bg-[#00a86b] flex items-center justify-center">
+            <span className="text-white text-[10px] font-bold">D</span>
           </div>
           <span>Deem</span>
         </a>
       </nav>
 
       {/* Support */}
-      <div className="px-2 py-3 border-t border-gray-100">
+      <div className="px-3 py-3 border-t border-gray-100">
         <a
           href="#"
-          className="flex items-center gap-3 px-3 py-2 rounded-md text-sm font-medium text-gray-600 hover:bg-gray-100 hover:text-gray-900"
+          className="flex items-center gap-3 px-3 py-2 rounded-lg text-sm font-medium text-[#5c6370] hover:bg-gray-100 hover:text-[#1f2532]"
         >
           <Lifebuoy size={20} weight="regular" />
           <span>Support</span>
