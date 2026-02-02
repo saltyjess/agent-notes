@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react'
-import { Note, NoteType, Version } from './types'
+import { Note, NoteType, Version, Project } from './types'
 import Sidebar from './components/Sidebar'
 import Header from './components/Header'
 import SettingsTabs from './components/SettingsTabs'
@@ -8,12 +8,12 @@ import CompanyNotesSection from './components/CompanyNotesSection'
 import NoteModal from './components/NoteModal'
 import VersionBar from './components/VersionBar'
 import VersionModal from './components/VersionModal'
+import ProjectGallery from './components/ProjectGallery'
 
 const VERSION_BAR_HEIGHT = 56
 const HEADER_HEIGHT = 56
 
-const STORAGE_KEY = 'agent-notes-data-v2'
-const VERSION_STORAGE_KEY = 'agent-notes-versions'
+const PROJECTS_STORAGE_KEY = 'andavo-design-projects'
 
 const defaultNotes: Note[] = [
   {
@@ -142,74 +142,111 @@ const defaultNotes: Note[] = [
   },
 ]
 
-// Default initial version
-const defaultVersion: Version = {
-  id: 'v1.0',
-  version: 'v1.0',
-  subtitle: 'Initial setup',
-  description: 'Initial version with default vendor, trip, and company notes.',
-  date: new Date().toISOString(),
-  changes: [
-    { id: '1', text: 'Added default vendor notes (Hertz, Air China, Delta, Alaska Airlines)', status: 'complete' },
-    { id: '2', text: 'Added default trip notes for travelers', status: 'complete' },
-    { id: '3', text: 'Added company notes with toggle controls', status: 'complete' },
+// Default project with initial version
+const defaultProject: Project = {
+  id: 'itinerary-notes',
+  name: 'Itinerary Notes',
+  description: 'Settings page for managing vendor, trip, and company notes that appear on travel itineraries.',
+  heroImage: 'https://images.unsplash.com/photo-1436491865332-7a61a109cc05?w=600&h=400&fit=crop',
+  versions: [
+    {
+      id: 'v1.0',
+      version: 'v1.0',
+      subtitle: 'Initial setup',
+      description: 'Initial version with default vendor, trip, and company notes.',
+      date: new Date().toISOString(),
+      changes: [
+        { id: '1', text: 'Added default vendor notes (Hertz, Air China, Delta, Alaska Airlines)', status: 'complete' },
+        { id: '2', text: 'Added default trip notes for travelers', status: 'complete' },
+        { id: '3', text: 'Added company notes with toggle controls', status: 'complete' },
+      ],
+      snapshot: defaultNotes
+    }
   ],
-  snapshot: defaultNotes
+  createdAt: new Date().toISOString(),
+  updatedAt: new Date().toISOString(),
 }
 
 function App() {
+  // Project and view state
+  const [projects, setProjects] = useState<Project[]>([])
+  const [selectedProject, setSelectedProject] = useState<Project | null>(null)
+  const [currentVersion, setCurrentVersion] = useState<Version | null>(null)
+
+  // Notes state (for current project)
   const [notes, setNotes] = useState<Note[]>([])
   const [isModalOpen, setIsModalOpen] = useState(false)
   const [editingNote, setEditingNote] = useState<Note | null>(null)
   const [modalNoteType, setModalNoteType] = useState<NoteType>('vendor')
 
-  // Versioning state
-  const [versions, setVersions] = useState<Version[]>([])
-  const [currentVersion, setCurrentVersion] = useState<Version | null>(null)
+  // Version modal state
   const [isVersionModalOpen, setIsVersionModalOpen] = useState(false)
   const [versionModalMode, setVersionModalMode] = useState<'create' | 'view'>('create')
   const [viewingVersion, setViewingVersion] = useState<Version | null>(null)
 
-  // Load notes and versions from localStorage
+  // Load projects from localStorage
   useEffect(() => {
-    const savedNotes = localStorage.getItem(STORAGE_KEY)
-    const savedVersions = localStorage.getItem(VERSION_STORAGE_KEY)
+    const savedProjects = localStorage.getItem(PROJECTS_STORAGE_KEY)
 
-    if (savedVersions) {
-      const parsedVersions = JSON.parse(savedVersions) as Version[]
-      setVersions(parsedVersions)
-      // Set current version to the latest (first in array)
-      if (parsedVersions.length > 0) {
-        setCurrentVersion(parsedVersions[0])
-      }
+    if (savedProjects) {
+      const parsedProjects = JSON.parse(savedProjects) as Project[]
+      setProjects(parsedProjects)
     } else {
-      // Initialize with default version
-      setVersions([defaultVersion])
-      setCurrentVersion(defaultVersion)
-      localStorage.setItem(VERSION_STORAGE_KEY, JSON.stringify([defaultVersion]))
-    }
-
-    if (savedNotes) {
-      setNotes(JSON.parse(savedNotes))
-    } else {
-      setNotes(defaultNotes)
+      // Initialize with default project
+      setProjects([defaultProject])
+      localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify([defaultProject]))
     }
   }, [])
 
-  // Save notes to localStorage
+  // Save projects to localStorage
   useEffect(() => {
-    if (notes.length > 0) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(notes))
+    if (projects.length > 0) {
+      localStorage.setItem(PROJECTS_STORAGE_KEY, JSON.stringify(projects))
     }
-  }, [notes])
+  }, [projects])
 
-  // Save versions to localStorage
+  // When a project is selected, load its latest version's notes
   useEffect(() => {
-    if (versions.length > 0) {
-      localStorage.setItem(VERSION_STORAGE_KEY, JSON.stringify(versions))
+    if (selectedProject && selectedProject.versions.length > 0) {
+      const latestVersion = selectedProject.versions[0]
+      setCurrentVersion(latestVersion)
+      setNotes(latestVersion.snapshot)
     }
-  }, [versions])
+  }, [selectedProject])
 
+  // Project handlers
+  const handleSelectProject = (project: Project) => {
+    setSelectedProject(project)
+  }
+
+  const handleBackToGallery = () => {
+    // Save current notes to the project before going back
+    if (selectedProject && currentVersion) {
+      const updatedVersions = selectedProject.versions.map(v =>
+        v.id === currentVersion.id ? { ...v, snapshot: notes } : v
+      )
+      const updatedProject = { ...selectedProject, versions: updatedVersions, updatedAt: new Date().toISOString() }
+      setProjects(projects.map(p => p.id === selectedProject.id ? updatedProject : p))
+    }
+    setSelectedProject(null)
+    setCurrentVersion(null)
+  }
+
+  const handleCreateProject = () => {
+    const newProject: Project = {
+      id: crypto.randomUUID(),
+      name: 'New Project',
+      description: 'A new Andavo project',
+      heroImage: 'https://images.unsplash.com/photo-1557804506-669a67965ba0?w=600&h=400&fit=crop',
+      versions: [],
+      createdAt: new Date().toISOString(),
+      updatedAt: new Date().toISOString(),
+    }
+    setProjects([...projects, newProject])
+    setSelectedProject(newProject)
+  }
+
+  // Note handlers
   const handleAddNote = (type: NoteType) => {
     setEditingNote(null)
     setModalNoteType(type)
@@ -262,39 +299,61 @@ function App() {
   }
 
   const handleSelectVersion = (version: Version) => {
-    // When selecting a version, show its details and offer to restore
     setVersionModalMode('view')
     setViewingVersion(version)
     setIsVersionModalOpen(true)
   }
 
   const handleSaveVersion = (versionData: Omit<Version, 'id'>) => {
+    if (!selectedProject) return
+
     const newVersion: Version = {
       ...versionData,
       id: versionData.version,
-      snapshot: [...notes] // Save current notes as snapshot
+      snapshot: [...notes]
     }
-    // Add new version at the beginning (most recent first)
-    const updatedVersions = [newVersion, ...versions]
-    setVersions(updatedVersions)
+
+    const updatedVersions = [newVersion, ...selectedProject.versions]
+    const updatedProject = {
+      ...selectedProject,
+      versions: updatedVersions,
+      updatedAt: new Date().toISOString()
+    }
+
+    setProjects(projects.map(p => p.id === selectedProject.id ? updatedProject : p))
+    setSelectedProject(updatedProject)
     setCurrentVersion(newVersion)
     setIsVersionModalOpen(false)
   }
 
+  // Filter notes by type
   const vendorNotes = notes.filter(n => n.type === 'vendor')
   const tripNotes = notes.filter(n => n.type === 'trip')
   const companyNotes = notes.filter(n => n.type === 'company')
 
+  // Show gallery if no project is selected
+  if (!selectedProject) {
+    return (
+      <ProjectGallery
+        projects={projects}
+        onSelectProject={handleSelectProject}
+        onCreateProject={handleCreateProject}
+      />
+    )
+  }
+
+  // Show project view
   return (
     <div style={{ minHeight: '100vh', backgroundColor: '#121418' }}>
       {/* Version Bar - Top level overlay */}
       {currentVersion && (
         <VersionBar
-          projectName="Itinerary Notes"
-          versions={versions}
+          projectName={selectedProject.name}
+          versions={selectedProject.versions}
           currentVersion={currentVersion}
           onSelectVersion={handleSelectVersion}
           onCreateVersion={handleCreateVersion}
+          onBack={handleBackToGallery}
         />
       )}
 
@@ -368,7 +427,7 @@ function App() {
           mode={versionModalMode}
           version={viewingVersion || undefined}
           currentNotes={notes}
-          previousVersion={versions[0]}
+          previousVersion={selectedProject.versions[0]}
           onSave={handleSaveVersion}
           onClose={() => {
             setIsVersionModalOpen(false)

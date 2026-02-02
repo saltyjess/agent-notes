@@ -87,3 +87,14 @@ export interface VersionState {
   currentVersion: string
   versions: Version[]
 }
+
+// Project types
+export interface Project {
+  id: string
+  name: string
+  description: string
+  heroImage: string
+  versions: Version[]
+  createdAt: string
+  updatedAt: string
+}
