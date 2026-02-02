@@ -213,7 +213,7 @@ function App() {
         <Header />
 
         <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
-          <h1 style={{ fontSize: '20px', fontWeight: 600, color: '#1f2532', marginBottom: '16px' }}>Settings</h1>
+          <h1 style={{ fontSize: '18px', fontWeight: 600, color: '#1f2532', marginBottom: '16px', letterSpacing: '-0.01em' }}>Settings</h1>
 
           <SettingsTabs activeTab="itinerary-notes" />
 

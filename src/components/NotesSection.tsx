@@ -28,8 +28,8 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
         marginBottom: '20px',
       }}>
         <div>
-          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{title}</h2>
-          <p style={{ fontSize: '14px', color: '#5c6370', marginTop: '2px', margin: 0 }}>{subtitle}</p>
+          <h2 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0, letterSpacing: '-0.01em' }}>{title}</h2>
+          <p style={{ fontSize: '13px', color: '#5c6370', marginTop: '4px', margin: 0 }}>{subtitle}</p>
         </div>
         <button
           onClick={onAdd}
@@ -37,7 +37,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
             display: 'flex',
             alignItems: 'center',
             gap: '6px',
-            fontSize: '14px',
+            fontSize: '13px',
             fontWeight: 500,
             color: '#5c6370',
             backgroundColor: 'transparent',
@@ -46,7 +46,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
           }}
         >
           Add new
-          <Plus size={16} weight="bold" />
+          <Plus size={14} weight="bold" />
         </button>
       </div>
 

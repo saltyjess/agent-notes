@@ -51,14 +51,14 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         marginBottom: '20px',
       }}>
         <div>
-          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>Company notes</h2>
-          <p style={{ fontSize: '14px', color: '#5c6370', marginTop: '2px', margin: 0 }}>Notes integrated in the itineraries</p>
+          <h2 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0, letterSpacing: '-0.01em' }}>Company notes</h2>
+          <p style={{ fontSize: '13px', color: '#5c6370', marginTop: '4px', margin: 0 }}>Notes integrated in the itineraries</p>
         </div>
         <button style={{
           display: 'flex',
           alignItems: 'center',
           gap: '6px',
-          fontSize: '14px',
+          fontSize: '13px',
           fontWeight: 500,
           color: '#5c6370',
           backgroundColor: 'transparent',
@@ -66,7 +66,7 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
           cursor: 'pointer',
         }}>
           Add new
-          <Plus size={16} weight="bold" />
+          <Plus size={14} weight="bold" />
         </button>
       </div>
 
@@ -75,23 +75,24 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Policy text area */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
+            <label style={{ fontSize: '13px', fontWeight: 500, color: '#1f2532' }}>
               Policy displayed on itinerary (this name needs reworking)
             </label>
-            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
+            <span style={{ fontSize: '11px', color: '#9ca3af' }}>Optional</span>
           </div>
           <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
               style={{
                 width: '100%',
                 padding: '12px',
-                fontSize: '14px',
+                fontSize: '13px',
                 color: '#5c6370',
                 resize: 'none',
                 border: 'none',
                 outline: 'none',
                 backgroundColor: 'white',
                 boxSizing: 'border-box',
+                fontFamily: 'inherit',
               }}
               rows={4}
               defaultValue="Please review all trip details carefully to ensure dates, names, and arrangements are correct."
@@ -126,23 +127,24 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
         {/* Fine print text area */}
         <div>
           <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: '8px' }}>
-            <label style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>
+            <label style={{ fontSize: '13px', fontWeight: 500, color: '#1f2532' }}>
               Fine print displayed on itinerary (this name needs reworking)
             </label>
-            <span style={{ fontSize: '12px', color: '#9ca3af' }}>Optional</span>
+            <span style={{ fontSize: '11px', color: '#9ca3af' }}>Optional</span>
           </div>
           <div style={{ border: '1px solid #e5e7eb', borderRadius: '8px', overflow: 'hidden' }}>
             <textarea
               style={{
                 width: '100%',
                 padding: '12px',
-                fontSize: '14px',
+                fontSize: '13px',
                 color: '#5c6370',
                 resize: 'none',
                 border: 'none',
                 outline: 'none',
                 backgroundColor: 'white',
                 boxSizing: 'border-box',
+                fontFamily: 'inherit',
               }}
               rows={4}
               defaultValue="By flying with our company you agree to represent our company and follow our standards listed in the company policies."
@@ -186,11 +188,11 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
                   checked={note.enabled}
                   onCheckedChange={() => onToggle(note.id)}
                 />
-                <h3 style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{note.title}</h3>
+                <h3 style={{ fontSize: '13px', fontWeight: 600, color: '#1f2532', margin: 0, letterSpacing: '-0.01em' }}>{note.title}</h3>
               </div>
               <p
                 style={{
-                  fontSize: '13px',
+                  fontSize: '12px',
                   lineHeight: 1.5,
                   marginBottom: '12px',
                   color: note.enabled ? '#5c6370' : '#9ca3af',
@@ -198,14 +200,14 @@ function CompanyNotesSection({ notes, onToggle }: CompanyNotesSectionProps) {
                 }}
                 dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
               />
-              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+              <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
                 {filterLabels.map(filter => (
                   <span
                     key={filter.id}
                     style={{
-                      fontSize: '11px',
+                      fontSize: '10px',
                       fontWeight: 500,
-                      padding: '2px 8px',
+                      padding: '2px 6px',
                       borderRadius: '4px',
                       backgroundColor: filter.color,
                       color: '#374151',

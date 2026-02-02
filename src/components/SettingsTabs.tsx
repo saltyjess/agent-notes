@@ -25,9 +25,9 @@ function SettingsTabs({ activeTab }: SettingsTabsProps) {
         <button
           key={tab.id}
           style={{
-            padding: '6px 12px',
-            borderRadius: '8px',
-            fontSize: '14px',
+            padding: '6px 10px',
+            borderRadius: '6px',
+            fontSize: '13px',
             fontWeight: 500,
             cursor: 'pointer',
             border: tab.id === activeTab ? '1px solid #e5e7eb' : 'none',

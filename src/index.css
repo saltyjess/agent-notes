@@ -1,16 +1,21 @@
 @import "tailwindcss";
 
 @theme {
-  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  --font-sans: 'Plus Jakarta Sans', 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
 
-  /* Custom colors matching the design */
+  /* Custom colors matching the Nomad design */
   --color-sidebar-bg: #ffffff;
   --color-sidebar-border: #e5e7eb;
   --color-nav-hover: #f3f4f6;
-  --color-nav-active-bg: #dbeafe;
-  --color-nav-active-text: #1d4ed8;
-  --color-primary: #0ea5e9;
-  --color-primary-hover: #0284c7;
+  --color-nav-active-bg: #e0f4fc;
+  --color-nav-active-text: #0076a1;
+  --color-primary: #0076a1;
+  --color-primary-hover: #005a7a;
+  --color-text-primary: #1f2532;
+  --color-text-secondary: #5c6370;
+  --color-text-muted: #9ca3af;
+  --color-border: #e5e7eb;
+  --color-bg-page: #f8f9fa;
 }
 
 * {
@@ -21,10 +26,12 @@
 
 body {
   font-family: var(--font-sans);
-  background-color: #f9fafb;
-  color: #111827;
+  background-color: #f8f9fa;
+  color: #1f2532;
   line-height: 1.5;
   font-size: 14px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 #root {

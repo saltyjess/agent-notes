@@ -18,19 +18,19 @@ function Header() {
         alignItems: 'center',
         gap: '8px',
         padding: '6px 12px',
-        borderRadius: '8px',
+        borderRadius: '6px',
         border: '1px solid #e5e7eb',
         backgroundColor: '#f8f9fa',
         color: '#5c6370',
-        fontSize: '14px',
+        fontSize: '13px',
         cursor: 'pointer',
       }}>
-        <MagnifyingGlass size={16} weight="regular" />
+        <MagnifyingGlass size={14} weight="regular" />
         <span>Search...</span>
         <kbd style={{
           marginLeft: '4px',
-          padding: '2px 6px',
-          fontSize: '11px',
+          padding: '2px 5px',
+          fontSize: '10px',
           color: '#5c6370',
           backgroundColor: 'white',
           border: '1px solid #e5e7eb',
@@ -68,8 +68,8 @@ function Header() {
           style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
         />
         <div style={{ textAlign: 'left' }}>
-          <div style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532' }}>Debbie Studebaker</div>
-          <div style={{ fontSize: '12px', color: '#5c6370' }}>Utah Jazz</div>
+          <div style={{ fontSize: '13px', fontWeight: 600, color: '#1f2532' }}>Debbie Studebaker</div>
+          <div style={{ fontSize: '11px', color: '#5c6370' }}>Utah Jazz</div>
         </div>
         <CaretDown size={16} style={{ color: '#5c6370' }} weight="bold" />
       </button>

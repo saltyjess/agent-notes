@@ -118,12 +118,13 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
 
           {/* Title */}
           <h3 style={{
-            fontSize: '14px',
+            fontSize: '13px',
             fontWeight: 600,
             color: '#1f2532',
-            lineHeight: 1.3,
-            paddingTop: '2px',
+            lineHeight: 1.4,
+            paddingTop: '3px',
             margin: 0,
+            letterSpacing: '-0.01em',
           }}>{note.title}</h3>
         </div>
 
@@ -153,7 +154,7 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       {/* Description */}
       <p
         style={{
-          fontSize: '13px',
+          fontSize: '12px',
           color: '#5c6370',
           marginBottom: '12px',
           lineHeight: 1.5,
@@ -163,13 +164,13 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       />
 
       {/* Tags */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '4px' }}>
         {isVendorNote && note.vendor ? (
           // Vendor notes show vendor name as single tag
           <span style={{
-            fontSize: '11px',
+            fontSize: '10px',
             fontWeight: 500,
-            padding: '2px 8px',
+            padding: '2px 6px',
             borderRadius: '4px',
             backgroundColor: '#f3f4f6',
             color: '#374151',
@@ -182,9 +183,9 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
             <span
               key={filter.id}
               style={{
-                fontSize: '11px',
+                fontSize: '10px',
                 fontWeight: 500,
-                padding: '2px 8px',
+                padding: '2px 6px',
                 borderRadius: '4px',
                 backgroundColor: filter.color,
                 color: '#374151',
