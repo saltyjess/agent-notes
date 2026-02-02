@@ -34,6 +34,20 @@ export const FILTER_OPTIONS: NoteFilter[] = [
   { id: 'virtual-payments', label: 'Virtual payments', color: '#dbeafe' },
 ]
 
+export const DISPLAY_ON_OPTIONS = [
+  { id: 'every-itinerary', label: 'Every itinerary' },
+  { id: 'air-segments', label: 'Itineraries that have Air segments' },
+  { id: 'car', label: 'Car' },
+  { id: 'hotel', label: 'Hotel' },
+  { id: 'rail', label: 'Rail' },
+]
+
+export const TRIP_TYPE_OPTIONS = [
+  { id: 'all', label: 'All' },
+  { id: 'domestic', label: 'Domestic' },
+  { id: 'international', label: 'International' },
+]
+
 export const VENDOR_OPTIONS = [
   'Hertz',
   'Air China',
