@@ -7,7 +7,7 @@ import NotesSection from './components/NotesSection'
 import CompanyNotesSection from './components/CompanyNotesSection'
 import NoteModal from './components/NoteModal'
 
-const STORAGE_KEY = 'agent-notes-data'
+const STORAGE_KEY = 'agent-notes-data-v2'
 
 const defaultNotes: Note[] = [
   {
@@ -49,7 +49,7 @@ const defaultNotes: Note[] = [
     title: 'Alaskan Airlines',
     description: 'New loyalty members get 40,000 air-miles Join now',
     enabled: true,
-    vendor: 'Alaska Airlines',
+    vendor: 'Alaskan Airlines',
     filters: ['itineraries-with-air'],
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString(),

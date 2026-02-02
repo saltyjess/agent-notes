@@ -19,9 +19,9 @@ interface NoteCardProps {
 const vendorColors: Record<string, { bg: string; text: string; icon?: string }> = {
   'Hertz': { bg: '#fbbf24', text: '#000', icon: 'H' },
   'Air China': { bg: '#dc2626', text: '#fff', icon: '🌸' },
-  'Delta': { bg: '#1e3a8a', text: '#fff', icon: '▲' },
-  'Alaska Airlines': { bg: '#0369a1', text: '#fff', icon: 'A' },
-  'Alaskan Airlines': { bg: '#0369a1', text: '#fff', icon: 'A' },
+  'Delta': { bg: '#1e3a8a', text: '#fff', icon: '▶' },
+  'Alaska Airlines': { bg: '#0ea5e9', text: '#fff', icon: 'A' },
+  'Alaskan Airlines': { bg: '#0ea5e9', text: '#fff', icon: 'A' },
   'United': { bg: '#1d4ed8', text: '#fff', icon: 'U' },
   'American Airlines': { bg: '#dc2626', text: '#fff', icon: 'AA' },
   'Southwest': { bg: '#f59e0b', text: '#000', icon: 'SW' },
@@ -64,13 +64,16 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
     return result
   }
 
+  // For vendor notes, show vendor name as tag; for trip notes, show filter tags
+  const isVendorNote = note.type === 'vendor'
+
   return (
     <div className="bg-white border border-gray-200 rounded-lg p-4 hover:shadow-sm transition-shadow">
       {/* Header */}
       <div className="flex items-start justify-between gap-2 mb-2">
         <div className="flex items-start gap-2.5 flex-1 min-w-0">
           {/* Icon */}
-          {note.type === 'vendor' && note.vendor ? (
+          {isVendorNote && note.vendor ? (
             <div
               className="w-6 h-6 rounded flex items-center justify-center flex-shrink-0 text-[10px] font-bold"
               style={{
@@ -114,16 +117,27 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
 
       {/* Tags */}
       <div className="flex flex-wrap gap-1.5">
-        {filterLabels.map(filter => (
+        {isVendorNote && note.vendor ? (
+          // Vendor notes show vendor name as single tag
           <Badge
-            key={filter.id}
             variant="secondary"
-            className="text-[11px] font-medium px-2 py-0.5 rounded"
-            style={{ backgroundColor: filter.color, color: '#374151' }}
+            className="text-[11px] font-medium px-2 py-0.5 rounded bg-[#f3f4f6]"
           >
-            {filter.label}
+            {note.vendor}
           </Badge>
-        ))}
+        ) : (
+          // Trip notes show filter tags
+          filterLabels.map(filter => (
+            <Badge
+              key={filter.id}
+              variant="secondary"
+              className="text-[11px] font-medium px-2 py-0.5 rounded"
+              style={{ backgroundColor: filter.color, color: '#374151' }}
+            >
+              {filter.label}
+            </Badge>
+          ))
+        )}
       </div>
     </div>
   )
