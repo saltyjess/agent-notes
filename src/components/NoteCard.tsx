@@ -74,7 +74,8 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       padding: '16px',
       display: 'flex',
       flexDirection: 'column',
-      height: 'fit-content',
+      height: '100%',
+      minHeight: '160px',
     }}>
       {/* Header */}
       <div style={{
@@ -153,7 +154,7 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
         </DropdownMenu>
       </div>
 
-      {/* Description */}
+      {/* Description - 2 line clamp */}
       <p
         style={{
           fontSize: '14px',
@@ -161,12 +162,17 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
           lineHeight: 1.5,
           margin: '0 0 16px 0',
           flex: 1,
+          display: '-webkit-box',
+          WebkitLineClamp: 2,
+          WebkitBoxOrient: 'vertical',
+          overflow: 'hidden',
+          textOverflow: 'ellipsis',
         }}
         dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
       />
 
       {/* Tags */}
-      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px' }}>
+      <div style={{ display: 'flex', flexWrap: 'wrap', gap: '6px', marginTop: 'auto' }}>
         {isVendorNote && note.vendor ? (
           // Vendor notes show vendor name as single tag
           <span style={{

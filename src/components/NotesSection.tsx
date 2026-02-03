@@ -14,13 +14,18 @@ interface NotesSectionProps {
 
 function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggle }: NotesSectionProps) {
   return (
-    <section>
+    <section style={{
+      backgroundColor: 'white',
+      borderRadius: '12px',
+      border: '1px solid #e5e7eb',
+      padding: '24px',
+    }}>
       {/* Header */}
       <div style={{
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        marginBottom: '16px',
+        marginBottom: '20px',
       }}>
         <div>
           <h2 style={{ fontSize: '18px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{title}</h2>
@@ -46,10 +51,10 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
         </button>
       </div>
 
-      {/* Grid */}
+      {/* Grid - 3 columns */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
+        gridTemplateColumns: 'repeat(3, 1fr)',
         gap: '16px',
       }}>
         {notes.map(note => (
