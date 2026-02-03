@@ -15,31 +15,32 @@ const tabs = [
 function SettingsTabs({ activeTab }: SettingsTabsProps) {
   return (
     <div style={{
-      display: 'flex',
-      gap: '0',
+      display: 'inline-flex',
+      backgroundColor: '#f3f4f6',
+      borderRadius: '10px',
+      padding: '4px',
       marginBottom: '32px',
+      gap: '2px',
     }}>
       {tabs.map(tab => (
         <button
           key={tab.id}
           style={{
-            padding: '12px 20px',
+            padding: '8px 16px',
             fontSize: '14px',
-            fontWeight: 400,
+            fontWeight: tab.id === activeTab ? 500 : 400,
             cursor: 'pointer',
-            border: tab.id === activeTab ? '1px solid #e5e7eb' : '1px solid transparent',
-            borderBottom: tab.id === activeTab ? '1px solid white' : '1px solid #e5e7eb',
-            borderRadius: tab.id === activeTab ? '8px 8px 0 0' : '0',
+            border: 'none',
+            borderRadius: '8px',
             backgroundColor: tab.id === activeTab ? 'white' : 'transparent',
             color: tab.id === activeTab ? '#1f2532' : '#6b7280',
-            marginBottom: '-1px',
-            position: 'relative',
+            boxShadow: tab.id === activeTab ? '0 1px 3px rgba(0, 0, 0, 0.1)' : 'none',
+            transition: 'all 0.15s ease',
           }}
         >
           {tab.label}
         </button>
       ))}
-      <div style={{ flex: 1, borderBottom: '1px solid #e5e7eb' }} />
     </div>
   )
 }
