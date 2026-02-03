@@ -1,76 +1,70 @@
 import { MagnifyingGlass, ArrowsClockwise, CaretDown } from "@phosphor-icons/react"
 
 const VERSION_BAR_HEIGHT = 56
+const SIDEBAR_WIDTH = 240
 
 function Header() {
   return (
     <header style={{
       position: 'fixed',
       top: `${VERSION_BAR_HEIGHT}px`,
-      left: 0,
+      left: `${SIDEBAR_WIDTH}px`,
       right: 0,
       height: '56px',
       borderBottom: '1px solid #e5e7eb',
       backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'space-between',
+      justifyContent: 'flex-end',
       padding: '0 24px',
       zIndex: 100,
     }}>
-      {/* Logo */}
-      <img
-        src="/images/andavo-logo.svg"
-        alt="Andavo"
-        style={{ height: '22px' }}
-      />
-
       {/* Right side items */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
         gap: '12px',
       }}>
-      {/* Search */}
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        gap: '8px',
-        padding: '8px 12px',
-        borderRadius: '8px',
-        border: '1px solid #e5e7eb',
-        backgroundColor: '#f8f9fa',
-        color: '#6b7280',
-        fontSize: '14px',
-        cursor: 'pointer',
-      }}>
-        <MagnifyingGlass size={16} weight="regular" />
-        <span>Search...</span>
-        <kbd style={{
-          marginLeft: '4px',
-          padding: '2px 6px',
-          fontSize: '11px',
-          color: '#6b7280',
-          backgroundColor: 'white',
+        {/* Search */}
+        <div style={{
+          display: 'flex',
+          alignItems: 'center',
+          gap: '8px',
+          padding: '8px 12px',
+          borderRadius: '8px',
           border: '1px solid #e5e7eb',
-          borderRadius: '4px',
-          fontWeight: 500,
-        }}>⌘K</kbd>
-      </div>
+          backgroundColor: '#f8f9fa',
+          color: '#6b7280',
+          fontSize: '14px',
+          cursor: 'pointer',
+        }}>
+          <MagnifyingGlass size={16} weight="regular" />
+          <span>Search...</span>
+          <kbd style={{
+            marginLeft: '4px',
+            padding: '2px 6px',
+            fontSize: '11px',
+            color: '#6b7280',
+            backgroundColor: 'white',
+            border: '1px solid #e5e7eb',
+            borderRadius: '4px',
+            fontWeight: 500,
+          }}>⌘K</kbd>
+        </div>
 
-      {/* Sync button */}
-      <button style={{
-        padding: '8px',
-        borderRadius: '8px',
-        backgroundColor: 'transparent',
-        border: 'none',
-        color: '#0076a1',
-        cursor: 'pointer',
-      }}>
-        <ArrowsClockwise size={20} weight="regular" />
-      </button>
+        {/* Sync button */}
+        <button style={{
+          padding: '8px',
+          borderRadius: '8px',
+          backgroundColor: 'transparent',
+          border: 'none',
+          color: '#0076a1',
+          cursor: 'pointer',
+        }}>
+          <ArrowsClockwise size={20} weight="regular" />
+        </button>
 
-      {/* User profile */}
+        {/* User profile */}
         <button style={{
           display: 'flex',
           alignItems: 'center',

@@ -12,6 +12,7 @@ import ProjectGallery from './components/ProjectGallery'
 
 const VERSION_BAR_HEIGHT = 56
 const HEADER_HEIGHT = 56
+const SIDEBAR_WIDTH = 240
 
 const PROJECTS_STORAGE_KEY = 'andavo-design-projects'
 
@@ -370,7 +371,7 @@ function App() {
           <Header />
           <Sidebar />
 
-          <div style={{ flex: 1, marginLeft: '200px', marginTop: `${HEADER_HEIGHT}px`, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
+          <div style={{ flex: 1, marginLeft: `${SIDEBAR_WIDTH}px`, marginTop: `${HEADER_HEIGHT}px`, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
             <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
               <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', marginBottom: '20px' }}>Settings</h1>
 
