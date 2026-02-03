@@ -19,8 +19,8 @@ const vendorColors: Record<string, { bg: string; text: string; icon?: string }> 
   'Hertz': { bg: '#fbbf24', text: '#000', icon: 'H' },
   'Air China': { bg: '#dc2626', text: '#fff', icon: '🌸' },
   'Delta': { bg: '#1e3a8a', text: '#fff', icon: '▶' },
-  'Alaska Airlines': { bg: '#0ea5e9', text: '#fff', icon: 'A' },
-  'Alaskan Airlines': { bg: '#0ea5e9', text: '#fff', icon: 'A' },
+  'Alaska Airlines': { bg: '#0ea5e9', text: '#fff', icon: '🏔' },
+  'Alaskan Airlines': { bg: '#0ea5e9', text: '#fff', icon: '🏔' },
   'United': { bg: '#1d4ed8', text: '#fff', icon: 'U' },
   'American Airlines': { bg: '#dc2626', text: '#fff', icon: 'AA' },
   'Southwest': { bg: '#f59e0b', text: '#000', icon: 'SW' },
@@ -56,7 +56,7 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
       if (result.includes(pattern)) {
         result = result.replace(
           pattern,
-          `<a href="#" style="color: #0076a1; text-decoration: none;">${pattern}</a>`
+          `<a href="#" style="color: #0891b2; text-decoration: none;">${pattern}</a>`
         )
       }
     })
@@ -70,8 +70,11 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
     <div style={{
       backgroundColor: 'white',
       border: '1px solid #e5e7eb',
-      borderRadius: '8px',
+      borderRadius: '12px',
       padding: '16px',
+      display: 'flex',
+      flexDirection: 'column',
+      height: 'fit-content',
     }}>
       {/* Header */}
       <div style={{
@@ -86,14 +89,14 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
           {isVendorNote && note.vendor ? (
             <div
               style={{
-                width: '24px',
-                height: '24px',
-                borderRadius: '4px',
+                width: '28px',
+                height: '28px',
+                borderRadius: '6px',
                 display: 'flex',
                 alignItems: 'center',
                 justifyContent: 'center',
                 flexShrink: 0,
-                fontSize: '10px',
+                fontSize: '12px',
                 fontWeight: 700,
                 backgroundColor: vendorColor?.bg || '#6b7280',
                 color: vendorColor?.text || '#fff',
@@ -103,26 +106,26 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
             </div>
           ) : (
             <div style={{
-              width: '24px',
-              height: '24px',
-              borderRadius: '4px',
-              backgroundColor: '#e0f4fc',
+              width: '28px',
+              height: '28px',
+              borderRadius: '6px',
+              backgroundColor: '#e0f7fa',
               display: 'flex',
               alignItems: 'center',
               justifyContent: 'center',
               flexShrink: 0,
             }}>
-              <Notebook size={14} style={{ color: '#0076a1' }} weight="fill" />
+              <Notebook size={16} style={{ color: '#0891b2' }} weight="fill" />
             </div>
           )}
 
           {/* Title */}
           <h3 style={{
-            fontSize: '14px',
+            fontSize: '15px',
             fontWeight: 600,
             color: '#1f2532',
             lineHeight: 1.4,
-            paddingTop: '3px',
+            paddingTop: '4px',
             margin: 0,
           }}>{note.title}</h3>
         </div>
@@ -131,14 +134,14 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
         <DropdownMenu>
           <DropdownMenuTrigger asChild>
             <button style={{
-              padding: '2px',
+              padding: '4px',
               borderRadius: '4px',
               backgroundColor: 'transparent',
               border: 'none',
               color: '#9ca3af',
               cursor: 'pointer',
             }}>
-              <DotsThreeVertical size={18} weight="bold" />
+              <DotsThreeVertical size={20} weight="bold" />
             </button>
           </DropdownMenuTrigger>
           <DropdownMenuContent align="end">
@@ -155,9 +158,9 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
         style={{
           fontSize: '14px',
           color: '#6b7280',
-          marginBottom: '12px',
           lineHeight: 1.5,
-          margin: '0 0 12px 0',
+          margin: '0 0 16px 0',
+          flex: 1,
         }}
         dangerouslySetInnerHTML={{ __html: formatDescription(note.description) }}
       />
@@ -169,7 +172,7 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
           <span style={{
             fontSize: '12px',
             fontWeight: 500,
-            padding: '4px 8px',
+            padding: '4px 10px',
             borderRadius: '6px',
             backgroundColor: '#f3f4f6',
             color: '#374151',
@@ -184,9 +187,9 @@ function NoteCard({ note, onEdit, onDelete }: NoteCardProps) {
               style={{
                 fontSize: '12px',
                 fontWeight: 500,
-                padding: '4px 8px',
+                padding: '4px 10px',
                 borderRadius: '6px',
-                backgroundColor: filter.color,
+                backgroundColor: '#f3f4f6',
                 color: '#374151',
               }}
             >

@@ -14,21 +14,16 @@ interface NotesSectionProps {
 
 function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggle }: NotesSectionProps) {
   return (
-    <section style={{
-      backgroundColor: 'white',
-      border: '1px solid #e5e7eb',
-      borderRadius: '12px',
-      padding: '24px',
-    }}>
+    <section>
       {/* Header */}
       <div style={{
         display: 'flex',
         alignItems: 'flex-start',
         justifyContent: 'space-between',
-        marginBottom: '20px',
+        marginBottom: '16px',
       }}>
         <div>
-          <h2 style={{ fontSize: '16px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{title}</h2>
+          <h2 style={{ fontSize: '18px', fontWeight: 600, color: '#1f2532', margin: 0 }}>{title}</h2>
           <p style={{ fontSize: '14px', color: '#6b7280', marginTop: '4px', margin: 0 }}>{subtitle}</p>
         </div>
         <button
@@ -43,6 +38,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
             backgroundColor: 'transparent',
             border: 'none',
             cursor: 'pointer',
+            padding: '8px 0',
           }}
         >
           Add new
@@ -53,7 +49,7 @@ function NotesSection({ title, subtitle, notes, onAdd, onEdit, onDelete, onToggl
       {/* Grid */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: 'repeat(3, 1fr)',
+        gridTemplateColumns: 'repeat(auto-fill, minmax(280px, 1fr))',
         gap: '16px',
       }}>
         {notes.map(note => (

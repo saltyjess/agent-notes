@@ -11,8 +11,8 @@ import VersionModal from './components/VersionModal'
 import ProjectGallery from './components/ProjectGallery'
 
 const VERSION_BAR_HEIGHT = 56
-const HEADER_HEIGHT = 56
-const SIDEBAR_WIDTH = 240
+const HEADER_HEIGHT = 64
+const SIDEBAR_WIDTH = 200
 
 const PROJECTS_STORAGE_KEY = 'andavo-design-projects'
 
@@ -372,12 +372,12 @@ function App() {
           <Sidebar />
 
           <div style={{ flex: 1, marginLeft: `${SIDEBAR_WIDTH}px`, marginTop: `${HEADER_HEIGHT}px`, display: 'flex', flexDirection: 'column', overflow: 'auto' }}>
-            <main style={{ flex: 1, padding: '24px', backgroundColor: '#f8f9fa' }}>
-              <h1 style={{ fontSize: '24px', fontWeight: 600, color: '#1f2532', marginBottom: '20px' }}>Settings</h1>
+            <main style={{ flex: 1, padding: '32px 40px', backgroundColor: '#f8f9fa' }}>
+              <h1 style={{ fontSize: '28px', fontWeight: 600, color: '#1f2532', marginBottom: '24px' }}>Settings</h1>
 
               <SettingsTabs activeTab="itinerary-notes" />
 
-              <div style={{ display: 'flex', flexDirection: 'column', gap: '24px' }}>
+              <div style={{ display: 'flex', flexDirection: 'column', gap: '40px' }}>
                 <NotesSection
                   title="Vendor notes"
                   subtitle="Notes displayed below the vendor information on itineraries"

@@ -1,29 +1,35 @@
 import { MagnifyingGlass, ArrowsClockwise, CaretDown } from "@phosphor-icons/react"
 
 const VERSION_BAR_HEIGHT = 56
-const SIDEBAR_WIDTH = 240
 
 function Header() {
   return (
     <header style={{
       position: 'fixed',
       top: `${VERSION_BAR_HEIGHT}px`,
-      left: `${SIDEBAR_WIDTH}px`,
+      left: 0,
       right: 0,
-      height: '56px',
+      height: '64px',
       borderBottom: '1px solid #e5e7eb',
       backgroundColor: 'white',
       display: 'flex',
       alignItems: 'center',
-      justifyContent: 'flex-end',
+      justifyContent: 'space-between',
       padding: '0 24px',
       zIndex: 100,
     }}>
+      {/* Logo */}
+      <img
+        src="/images/andavo-logo.svg"
+        alt="Andavo"
+        style={{ height: '20px' }}
+      />
+
       {/* Right side items */}
       <div style={{
         display: 'flex',
         alignItems: 'center',
-        gap: '12px',
+        gap: '16px',
       }}>
         {/* Search */}
         <div style={{
@@ -33,19 +39,20 @@ function Header() {
           padding: '8px 12px',
           borderRadius: '8px',
           border: '1px solid #e5e7eb',
-          backgroundColor: '#f8f9fa',
-          color: '#6b7280',
+          backgroundColor: 'white',
+          color: '#9ca3af',
           fontSize: '14px',
           cursor: 'pointer',
+          minWidth: '140px',
         }}>
           <MagnifyingGlass size={16} weight="regular" />
           <span>Search...</span>
           <kbd style={{
-            marginLeft: '4px',
+            marginLeft: 'auto',
             padding: '2px 6px',
             fontSize: '11px',
-            color: '#6b7280',
-            backgroundColor: 'white',
+            color: '#9ca3af',
+            backgroundColor: '#f3f4f6',
             border: '1px solid #e5e7eb',
             borderRadius: '4px',
             fontWeight: 500,
@@ -58,8 +65,11 @@ function Header() {
           borderRadius: '8px',
           backgroundColor: 'transparent',
           border: 'none',
-          color: '#0076a1',
+          color: '#0891b2',
           cursor: 'pointer',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'center',
         }}>
           <ArrowsClockwise size={20} weight="regular" />
         </button>
@@ -69,7 +79,7 @@ function Header() {
           display: 'flex',
           alignItems: 'center',
           gap: '10px',
-          padding: '6px 8px',
+          padding: '4px 8px',
           borderRadius: '8px',
           backgroundColor: 'transparent',
           border: 'none',
@@ -81,10 +91,10 @@ function Header() {
             style={{ width: '32px', height: '32px', borderRadius: '50%', objectFit: 'cover' }}
           />
           <div style={{ textAlign: 'left' }}>
-            <div style={{ fontSize: '14px', fontWeight: 600, color: '#1f2532' }}>Debbie Studebaker</div>
+            <div style={{ fontSize: '14px', fontWeight: 500, color: '#1f2532' }}>Debbie Studebaker</div>
             <div style={{ fontSize: '12px', color: '#6b7280' }}>Utah Jazz</div>
           </div>
-          <CaretDown size={16} style={{ color: '#5c6370' }} weight="bold" />
+          <CaretDown size={14} style={{ color: '#9ca3af' }} weight="bold" />
         </button>
       </div>
     </header>

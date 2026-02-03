@@ -18,36 +18,26 @@ const mainNavItems = [
 ]
 
 const VERSION_BAR_HEIGHT = 56
+const HEADER_HEIGHT = 64
 
 function Sidebar() {
   return (
     <aside style={{
-      width: '240px',
-      minWidth: '240px',
+      width: '200px',
+      minWidth: '200px',
       backgroundColor: 'white',
       borderRight: '1px solid #e5e7eb',
       position: 'fixed',
-      top: `${VERSION_BAR_HEIGHT}px`,
+      top: `${VERSION_BAR_HEIGHT + HEADER_HEIGHT}px`,
       left: 0,
       bottom: 0,
       display: 'flex',
       flexDirection: 'column',
       zIndex: 50,
+      paddingTop: '8px',
     }}>
-      {/* Logo */}
-      <div style={{
-        padding: '20px 24px',
-        borderBottom: '1px solid #f3f4f6',
-      }}>
-        <img
-          src="/images/andavo-logo.svg"
-          alt="Andavo"
-          style={{ height: '22px' }}
-        />
-      </div>
-
       {/* Main Navigation */}
-      <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '4px', padding: '16px 12px' }}>
+      <nav style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2px', padding: '8px 12px' }}>
         {mainNavItems.map(item => {
           const Icon = item.icon
           return (
@@ -58,7 +48,7 @@ function Sidebar() {
                 display: 'flex',
                 alignItems: 'center',
                 gap: '12px',
-                padding: '12px 16px',
+                padding: '10px 12px',
                 borderRadius: '8px',
                 fontSize: '15px',
                 fontWeight: item.active ? 500 : 400,
@@ -72,13 +62,13 @@ function Sidebar() {
                 <div style={{
                   position: 'absolute',
                   left: '-12px',
-                  top: '8px',
-                  bottom: '8px',
+                  top: '6px',
+                  bottom: '6px',
                   width: '0',
                   borderLeft: '2px dashed #d1d5db',
                 }} />
               )}
-              <Icon size={22} weight={item.active ? "fill" : "regular"} />
+              <Icon size={20} weight={item.active ? "fill" : "regular"} />
               <span>{item.label}</span>
             </a>
           )
@@ -91,7 +81,7 @@ function Sidebar() {
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
-            padding: '12px 16px',
+            padding: '10px 12px',
             borderRadius: '8px',
             fontSize: '15px',
             fontWeight: 400,
@@ -101,29 +91,29 @@ function Sidebar() {
           }}
         >
           <div style={{
-            width: '22px',
-            height: '22px',
+            width: '20px',
+            height: '20px',
             borderRadius: '4px',
             backgroundColor: '#0066cc',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
           }}>
-            <span style={{ color: 'white', fontSize: '12px', fontWeight: 700 }}>D</span>
+            <span style={{ color: 'white', fontSize: '11px', fontWeight: 700 }}>D</span>
           </div>
           <span>Deem</span>
         </a>
       </nav>
 
       {/* Support */}
-      <div style={{ padding: '16px 12px', borderTop: '1px solid #f3f4f6' }}>
+      <div style={{ padding: '8px 12px', borderTop: '1px solid #f3f4f6' }}>
         <a
           href="#"
           style={{
             display: 'flex',
             alignItems: 'center',
             gap: '12px',
-            padding: '12px 16px',
+            padding: '10px 12px',
             borderRadius: '8px',
             fontSize: '15px',
             fontWeight: 400,
@@ -131,7 +121,7 @@ function Sidebar() {
             color: '#1f2532',
           }}
         >
-          <Question size={22} weight="regular" />
+          <Question size={20} weight="regular" />
           <span>Support</span>
         </a>
       </div>
