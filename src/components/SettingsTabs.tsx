@@ -17,24 +17,24 @@ function SettingsTabs({ activeTab }: SettingsTabsProps) {
     <div style={{
       display: 'inline-flex',
       backgroundColor: '#f3f4f6',
-      borderRadius: '10px',
+      borderRadius: '9999px',
       padding: '4px',
       marginBottom: '32px',
-      gap: '2px',
+      gap: '0',
     }}>
       {tabs.map(tab => (
         <button
           key={tab.id}
           style={{
-            padding: '8px 16px',
+            padding: '8px 20px',
             fontSize: '14px',
             fontWeight: tab.id === activeTab ? 500 : 400,
             cursor: 'pointer',
             border: 'none',
-            borderRadius: '8px',
+            borderRadius: '9999px',
             backgroundColor: tab.id === activeTab ? 'white' : 'transparent',
             color: tab.id === activeTab ? '#1f2532' : '#6b7280',
-            boxShadow: tab.id === activeTab ? '0 1px 3px rgba(0, 0, 0, 0.1)' : 'none',
+            boxShadow: tab.id === activeTab ? '0 1px 2px rgba(0, 0, 0, 0.08)' : 'none',
             transition: 'all 0.15s ease',
           }}
         >
